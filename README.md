@@ -7,10 +7,12 @@ Cloud-init configuration is provided via the [VMware guestinfo datasource](https
 ## Requirements
 - Terraform version > v1.0.0
 - Have a Ubuntu 20.04LTS VM tempalte ready in the cluster. By default it looks for `packer-linux-ubuntu-server-20-04-lts`. This code has been tested on 20.04.4 and 20.04.5.
+- `mkpasswd` for encrypted password
 
 ## Usage
 1. Rename edge.tfvars.example to edge.tfvars
 2. Fill in the required parameters pertaining to your vSphere cluster or hosts
+   - Use `mkpasswd -m sha-512` to generate the VM's encrypted password and set variable `encrypted_passwd` to the output
    - Note: multiple VM's (count > 1) is only supported if you set DHCP to true
 3. Provision the VM(s) with the configured tfvars file
    `terraform apply -var-file=edge3.tfvars`
