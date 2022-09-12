@@ -5,8 +5,8 @@ This repo provides an example of deploying a [Cluster API BYOH host](https://git
 Cloud-init configuration is provided via the [VMware guestinfo datasource](https://github.com/vmware/cloud-init-vmware-guestinfo). A sample Packer build that has the relevant dependencies pre-installed can be found [here](https://github.com/kalenarndt/packer-vsphere-cloud-init).
 
 ## Requirements
-- Terraform version >> v1.0.0
-- Have a Ubuntu 20.04 VM tempalte ready in the cluster. By default it looks for `packer-linux-ubuntu-server-20-04-lts`
+- Terraform version > v1.0.0
+- Have a Ubuntu 20.04LTS VM tempalte ready in the cluster. By default it looks for `packer-linux-ubuntu-server-20-04-lts`. This code has been tested on 20.04.4 and 20.04.5.
 
 ## Usage
 1. Rename edge.tfvars.example to edge.tfvars
