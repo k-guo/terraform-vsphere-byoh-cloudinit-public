@@ -1,0 +1,39 @@
+#cloud-config
+hostanme: ${hostname}
+manage_etc_hosts: true
+users:
+  - name: ${username}
+    lock_passwd: false
+    ssh_authorized_keys:
+      - ${ssh_public_key}
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: sudo
+    home: /home/ubuntu
+    shell: /bin/bash
+chpasswd:
+  list: |
+     ubuntu:ubuntu
+  expire: False
+package_update: true
+packages:
+  ${packages}
+
+# package_reboot_if_required: true
+power_state:
+  mode: reboot
+  message: "Rebooting to get the new kernel"
+  condition: true
+# written to /var/log/cloud-init-output.log
+final_message: "The system is finally up, after $UPTIME seconds"
+
+runcmd:
+#  - wget -O- https://carvel.dev/install.sh > install.sh
+#  - sudo bash install.sh
+  - cd /home/ubuntu
+  - sudo usermod -a -G syslog ubuntu
+#  - sudo ./agent_setup.sh
+  - curl -L https://github.com/kubernetes-sigs/cluster-api/releases/download/v1.2.1/clusterctl-linux-amd64 -o clusterctl
+  - sudo install -o root -g root -m 0755 clusterctl /usr/local/bin/clusterctl
+  - curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+  - sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+  - sudo rm clusterctl kubectl
