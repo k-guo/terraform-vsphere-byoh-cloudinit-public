@@ -6,6 +6,7 @@ Cloud-init configuration is provided via the [VMware guestinfo datasource](https
 
 ## Requirements
 - Terraform version >> v1.0.0
+- Have a Ubuntu 20.04 VM tempalte ready in the cluster. By default it looks for `packer-linux-ubuntu-server-20-04-lts`
 
 ## Usage
 1. Rename edge.tfvars.example to edge.tfvars
