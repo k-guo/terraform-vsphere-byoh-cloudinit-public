@@ -29,7 +29,7 @@ runcmd:
   - cd /home/ubuntu
   - sudo usermod -a -G syslog ubuntu
 #  - sudo ./agent_setup.sh
-  - curl -L https://github.com/kubernetes-sigs/cluster-api/releases/download/v1.2.1/clusterctl-linux-amd64 -o clusterctl
+  - curl -L https://github.com/kubernetes-sigs/cluster-api/releases/download/v1.2.2/clusterctl-linux-amd64 -o clusterctl
   - sudo install -o root -g root -m 0755 clusterctl /usr/local/bin/clusterctl
   - curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
   - sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
